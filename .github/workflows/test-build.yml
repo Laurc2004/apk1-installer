@@ -32,6 +32,12 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         
+    - name: Setup Android SDK
+      uses: android-actions/setup-android@v3
+      with:
+        api-level: 34
+        build-tools: 34.0.0
+        
     - name: Download Gradle Wrapper JAR
       run: |
         mkdir -p gradle/wrapper
@@ -43,3 +49,9 @@ jobs:
       
     - name: Test Gradle wrapper
       run: ./gradlew --version
+      
+    - name: Test Android SDK
+      run: |
+        echo "Android SDK location: $ANDROID_HOME"
+        ls -la $ANDROID_HOME/platforms/ || echo "No platforms found"
+        ls -la $ANDROID_HOME/build-tools/ || echo "No build-tools found"
