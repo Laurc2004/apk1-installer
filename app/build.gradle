@@ -17,30 +17,16 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    signingConfigs {
-        debug {
-            // 使用默认的debug签名
-        }
-        release {
-            // 对于开源项目，使用debug签名来避免签名问题
-            // 这样可以确保release包能够正常构建
-            storeFile file(System.getProperty('user.home') + '/.android/debug.keystore')
-            storePassword 'android'
-            keyAlias 'AndroidDebugKey'
-            keyPassword 'android'
-        }
-    }
-
     buildTypes {
         debug {
             debuggable true
             minifyEnabled false
-            signingConfig signingConfigs.debug
+            applicationIdSuffix ".debug"
         }
         release {
-            debuggable false
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            // 使用debug签名配置用于GitHub Actions构建
             signingConfig signingConfigs.debug
         }
     }

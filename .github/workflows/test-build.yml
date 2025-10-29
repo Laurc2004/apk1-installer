@@ -55,3 +55,20 @@ jobs:
         echo "Android SDK location: $ANDROID_HOME"
         ls -la $ANDROID_HOME/platforms/ || echo "No platforms found"
         ls -la $ANDROID_HOME/build-tools/ || echo "No build-tools found"
+        
+    - name: Test APK Build
+      run: |
+        echo "Testing APK build..."
+        ./gradlew assembleDebug --stacktrace
+        echo "Debug APK build completed"
+        ./gradlew assembleRelease --stacktrace  
+        echo "Release APK build completed"
+        
+    - name: List APK outputs
+      run: |
+        echo "=== APK Build Results ==="
+        find . -name "*.apk" -type f -exec ls -la {} \;
+        echo "=== Debug APK Directory ==="
+        ls -la app/build/outputs/apk/debug/ || echo "Debug directory not found"
+        echo "=== Release APK Directory ==="
+        ls -la app/build/outputs/apk/release/ || echo "Release directory not found"

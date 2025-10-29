@@ -59,9 +59,8 @@ jobs:
     - name: Build Debug APK
       run: ./gradlew assembleDebug --stacktrace --info
       
-    - name: Build Release APK (if Debug succeeds)
+    - name: Build Release APK
       run: ./gradlew assembleRelease --stacktrace --info
-      continue-on-error: true
       
     - name: List build outputs
       run: |
@@ -69,20 +68,18 @@ jobs:
         find . -name "*.apk" -type f
         
     - name: Upload Debug APK
-      if: always()
       uses: actions/upload-artifact@v4
       with:
         name: app-debug
         path: app/build/outputs/apk/debug/*.apk
-        if-no-files-found: warn
+        if-no-files-found: error
         
     - name: Upload Release APK
-      if: always()
       uses: actions/upload-artifact@v4
       with:
         name: app-release
         path: app/build/outputs/apk/release/*.apk
-        if-no-files-found: warn
+        if-no-files-found: error
         
     - name: Create Release
       if: startsWith(github.ref, 'refs/tags/') && success()
