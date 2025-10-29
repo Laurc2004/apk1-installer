@@ -98,7 +98,7 @@ apk1-installer/
 
 ## 🛠️ 开发环境要求
 
-- **Java**: JDK 11 或 JDK 17
+- **Java**: JDK 17 (必需，Android Gradle Plugin 8.0.2要求)
 - **IDE**: IntelliJ IDEA 旗舰版 (推荐) 或 Android Studio
 - **Android SDK**: API 24-34
 - **Gradle**: 8.0+ (项目自带Wrapper)
@@ -142,7 +142,7 @@ apk1-installer/
 ### Q: Gradle同步失败？
 **A**:
 1. 检查网络连接
-2. 确保Java版本正确 (11或17)
+2. 确保Java版本正确 (JDK 17)
 3. 尝试Clean Project后重新构建
 
 ### Q: 构建的APK在哪里？

@@ -8,8 +8,8 @@ echo.
 echo [1/4] 检查Java环境...
 java -version >nul 2>&1
 if %errorlevel% neq 0 (
-    echo ❌ 未检测到Java，请先安装Java 11或17
-    echo 下载地址: https://www.oracle.com/java/technologies/downloads/
+    echo ❌ 未检测到Java，请先安装Java 17
+    echo 下载地址: https://adoptium.net/temurin/releases/?version=17
     pause
     exit /b 1
 ) else (

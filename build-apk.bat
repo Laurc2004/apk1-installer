@@ -7,12 +7,14 @@ echo.
 echo 正在检查Java环境...
 java -version >nul 2>&1
 if errorlevel 1 (
-    echo 错误: 未找到Java环境，请确保已安装JDK 11或17
+    echo 错误: 未找到Java环境，请确保已安装JDK 17
+    echo 注意: Android Gradle Plugin 8.0.2 需要 JDK 17
     pause
     exit /b 1
 )
 
 echo Java环境检查通过
+echo 注意: 如果构建失败，请确保使用JDK 17
 echo.
 
 echo 正在清理之前的构建...
