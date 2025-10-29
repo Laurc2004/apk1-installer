@@ -1,0 +1,45 @@
+name: Test Build
+
+on:
+  push:
+    branches:
+      - master
+      - main
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: List project structure
+      run: |
+        echo "Project structure:"
+        find . -type f -name "*.gradle*" -o -name "gradlew*" -o -name "*.properties" | head -20
+        
+    - name: Check Gradle files
+      run: |
+        echo "Checking Gradle wrapper files:"
+        ls -la gradle/wrapper/ || echo "No gradle wrapper directory"
+        ls -la gradlew* || echo "No gradlew files"
+        
+    - name: Set up JDK 17
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        
+    - name: Download Gradle Wrapper JAR
+      run: |
+        mkdir -p gradle/wrapper
+        curl -L -o gradle/wrapper/gradle-wrapper.jar https://github.com/gradle/gradle/raw/v8.0.0/gradle/wrapper/gradle-wrapper.jar
+        ls -la gradle/wrapper/
+        
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
+      
+    - name: Test Gradle wrapper
+      run: ./gradlew --version

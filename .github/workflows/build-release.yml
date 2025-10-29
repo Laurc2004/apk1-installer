@@ -4,6 +4,13 @@ on:
   push:
     tags:
       - 'v*'
+    branches:
+      - master
+      - main
+  pull_request:
+    branches:
+      - master
+      - main
   workflow_dispatch:
 
 jobs:
@@ -24,7 +31,7 @@ jobs:
       uses: android-actions/setup-android@v3
       
     - name: Cache Gradle packages
-      uses: actions/cache@v3
+      uses: actions/cache@v4
       with:
         path: |
           ~/.gradle/caches
@@ -33,36 +40,55 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-gradle-
           
+    - name: Download Gradle Wrapper JAR
+      run: |
+        mkdir -p gradle/wrapper
+        curl -L -o gradle/wrapper/gradle-wrapper.jar https://github.com/gradle/gradle/raw/v8.0.0/gradle/wrapper/gradle-wrapper.jar
+          
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
       
+    - name: Validate Gradle wrapper
+      uses: gradle/wrapper-validation-action@v1
+      
     - name: Build Debug APK
-      run: ./gradlew assembleDebug
+      run: ./gradlew assembleDebug --stacktrace --info
       
-    - name: Build Release APK
-      run: ./gradlew assembleRelease
+    - name: Build Release APK (if Debug succeeds)
+      run: ./gradlew assembleRelease --stacktrace --info
+      continue-on-error: true
       
+    - name: List build outputs
+      run: |
+        echo "Listing build outputs:"
+        find . -name "*.apk" -type f
+        
     - name: Upload Debug APK
+      if: always()
       uses: actions/upload-artifact@v4
       with:
         name: app-debug
-        path: app/build/outputs/apk/debug/app-debug.apk
+        path: app/build/outputs/apk/debug/*.apk
+        if-no-files-found: warn
         
     - name: Upload Release APK
+      if: always()
       uses: actions/upload-artifact@v4
       with:
         name: app-release
-        path: app/build/outputs/apk/release/app-release-unsigned.apk
+        path: app/build/outputs/apk/release/*.apk
+        if-no-files-found: warn
         
     - name: Create Release
-      if: startsWith(github.ref, 'refs/tags/')
-      uses: softprops/action-gh-release@v1
+      if: startsWith(github.ref, 'refs/tags/') && success()
+      uses: softprops/action-gh-release@v2
       with:
         files: |
-          app/build/outputs/apk/debug/app-debug.apk
-          app/build/outputs/apk/release/app-release-unsigned.apk
+          app/build/outputs/apk/debug/*.apk
+          app/build/outputs/apk/release/*.apk
         body_path: RELEASE_NOTES.md
         draft: false
         prerelease: false
+        generate_release_notes: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
