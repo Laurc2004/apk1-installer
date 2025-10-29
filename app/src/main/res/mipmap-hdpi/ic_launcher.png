@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+    <!-- 背景圆形 -->
+    <circle cx="24" cy="24" r="22" fill="#2196F3" stroke="#1976D2" stroke-width="2"/>
+    
+    <!-- APK图标 -->
+    <g transform="translate(12, 12)">
+        <!-- 文件形状 -->
+        <path d="M4 2 L16 2 L20 6 L20 22 L4 22 Z" fill="white" opacity="0.9"/>
+        <path d="M16 2 L16 6 L20 6" fill="white" opacity="0.7"/>
+        
+        <!-- APK文字 -->
+        <text x="12" y="16" text-anchor="middle" font-family="Arial, sans-serif" font-size="6" font-weight="bold" fill="#2196F3">APK</text>
+        
+        <!-- .1标识 -->
+        <circle cx="18" cy="8" r="3" fill="#FF5722"/>
+        <text x="18" y="10" text-anchor="middle" font-family="Arial, sans-serif" font-size="4" font-weight="bold" fill="white">.1</text>
+    </g>
+    
+    <!-- 安装箭头 -->
+    <path d="M24 32 L28 28 L26 28 L26 24 L22 24 L22 28 L20 28 Z" fill="white"/>
+</svg>

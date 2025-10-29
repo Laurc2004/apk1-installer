@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">APK1安装器</string>
+    
+    <!-- 主界面 -->
+    <string name="welcome_title">欢迎使用APK1安装器</string>
+    <string name="welcome_subtitle">解决QQ、微信传输APK文件后缀变为.apk.1的问题</string>
+    <string name="select_file">选择APK1文件</string>
+    <string name="install_apk">安装应用</string>
+    <string name="settings">设置</string>
+    <string name="privacy_policy">隐私协议</string>
+    <string name="about">关于</string>
+    <string name="version">版本 1.0.0</string>
+    
+    <!-- 设置相关 -->
+    <string name="auto_install">自动安装</string>
+    <string name="auto_install_summary">打开文件后自动开始安装</string>
+    <string name="hide_icon">隐藏应用图标</string>
+    <string name="hide_icon_summary">隐藏后可通过拨号*#*#1234#*#*恢复</string>
+    <string name="show_icon">显示应用图标</string>
+    
+    <!-- 安装界面 -->
+    <string name="installing">正在安装...</string>
+    <string name="install_success">安装成功</string>
+    <string name="install_failed">安装失败</string>
+    <string name="file_not_found">文件不存在</string>
+    <string name="invalid_file">无效的APK文件</string>
+    <string name="permission_denied">权限被拒绝</string>
+    
+    <!-- 权限相关 -->
+    <string name="permission_title">需要安装权限</string>
+    <string name="permission_message">为了安装APK文件，需要您授予"安装未知应用"权限</string>
+    <string name="go_to_settings">前往设置</string>
+    <string name="cancel">取消</string>
+    <string name="ok">确定</string>
+    
+    <!-- 隐私协议 -->
+    <string name="privacy_title">隐私协议</string>
+    <string name="disclaimer_title">免责声明</string>
+    <string name="agree">同意</string>
+    <string name="disagree">不同意</string>
+    
+    <!-- 错误信息 -->
+    <string name="error_unknown">未知错误</string>
+    <string name="error_file_access">文件访问失败</string>
+    <string name="error_install_permission">缺少安装权限</string>
+    
+    <!-- 提示信息 -->
+    <string name="tip_qq_wechat">在QQ或微信中点击右上角"用其他应用打开"选择本应用</string>
+    <string name="tip_first_use">首次使用需要授予安装权限</string>
+</resources>

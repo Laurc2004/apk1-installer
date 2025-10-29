@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory
+        android:title="功能设置"
+        app:iconSpaceReserved="false">
+
+        <SwitchPreferenceCompat
+            android:key="auto_install"
+            android:title="@string/auto_install"
+            android:summary="@string/auto_install_summary"
+            android:defaultValue="false"
+            app:iconSpaceReserved="false" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="界面设置"
+        app:iconSpaceReserved="false">
+
+        <SwitchPreferenceCompat
+            android:key="hide_icon"
+            android:title="@string/hide_icon"
+            android:summary="@string/hide_icon_summary"
+            android:defaultValue="false"
+            app:iconSpaceReserved="false" />
+
+        <Preference
+            android:key="restore_icon"
+            android:title="恢复图标显示"
+            android:summary="点击恢复应用图标显示"
+            android:visible="false"
+            app:iconSpaceReserved="false" />
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        android:title="应用信息"
+        app:iconSpaceReserved="false">
+
+        <Preference
+            android:key="about"
+            android:title="@string/about"
+            android:summary="@string/version"
+            app:iconSpaceReserved="false" />
+
+    </PreferenceCategory>
+
+</PreferenceScreen>
