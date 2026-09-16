@@ -111,7 +111,7 @@ class SettingsActivity : AppCompatActivity() {
         }
         
         private fun updateIconVisibility(hide: Boolean) {
-            val componentName = ComponentName(requireContext(), "${requireContext().packageName}.MainActivityAlias")
+            val componentName = ComponentName(requireContext(), "com.apk1installer.MainActivityAlias")
             val newState = if (hide) {
                 PackageManager.COMPONENT_ENABLED_STATE_DISABLED
             } else {

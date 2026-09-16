@@ -34,15 +34,14 @@ object PermissionHelper {
     }
     
     /**
-     * 检查存储权限
+     * 检查存储权限。
+     * Android 13+ 通过 SAF / content URI 访问用户选择的文件，不需要存储权限。
      */
     fun hasStoragePermission(context: Context): Boolean {
         return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            // Android 13+ 使用新的权限模型
-            true // 通过SAF访问文件不需要存储权限
+            true
         } else {
-            // Android 12及以下
-            context.checkSelfPermission(android.Manifest.permission.READ_EXTERNAL_STORAGE) == 
+            context.checkSelfPermission(android.Manifest.permission.READ_EXTERNAL_STORAGE) ==
                 android.content.pm.PackageManager.PERMISSION_GRANTED
         }
     }
