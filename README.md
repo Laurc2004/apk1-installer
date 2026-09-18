@@ -163,8 +163,11 @@ apk1-installer/
 
 ## 👨‍💻 作者
 
-**Edan Liu**
+**Edan Liu**（第一作者）
 - 📧 邮箱: liurc2004@outlook.com
+
+**Nathan Jose**（第二作者）
+- 📧 邮箱: 1809804218a@gmail.com
 
 ## 🤝 贡献
 
